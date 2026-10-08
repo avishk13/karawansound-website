@@ -21,4 +21,4 @@ Run `python serve.py` from the folder above this one (or `python -m http.server 
 ## Hosting
 Free on Cloudflare Pages, connected to a GitHub repository. Point the domain's DNS at it (the host gives the exact records). karawansound.com is currently on Wix, so repointing DNS switches the live site; test on the host's preview address first and keep a note of the old DNS records. Do not touch any email (MX) records.
 
-The free ambiance pack download link in `content.js` (`freePack.link`) still points at the Wix-hosted zip. Move the zip (for example to a GitHub Release) before cancelling Wix.
+The free ambiance pack zip (1.5 GB) is not part of the site files. It is attached to the GitHub Release `ambience-pack-v1`, and the download button (`freePack.link` in `content.js`) points there. To replace it, edit the release on GitHub and swap the attached file (keep the same file name, or update the link).

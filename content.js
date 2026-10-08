@@ -151,8 +151,8 @@ window.SITE = {
       { src: "images/ambience/amb8.jpg", caption: "017 - Banff, Healy Pass trail creek, mid day, light wind, no people" },
     ],
     button: "Download 25 Ambiance Files",
-    /* Still points at the Wix-hosted zip - swap for the new location when the zip moves. */
-    link: "https://www.karawansound.com/_files/archives/8ad990_b927c5080f90409ea3ae833e12188d98.zip?dn=North%20American%20Ambiences%20-%20Avishai%20Karawan.zip",
+    /* The zip is a file attached to a GitHub Release (github.com/avishk13/karawansound-website/releases), not part of the site files. */
+    link: "https://github.com/avishk13/karawansound-website/releases/download/ambience-pack-v1/North.American.Ambiences.-.Avishai.Karawan.zip",
   },
 
   /* Faint background motion per section (the top reels and About keep their own).

@@ -227,41 +227,47 @@ main > section, #sections > section { position: relative; }
 /* featured row: two bigger tiles above the carousel */
 .feature-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; padding: 34px 40px 4px; }
 .feature-row .slide.tile { padding: 10px; }
-.feature-row .slide.tile:hover, .feature-row .slide.tile:focus-within { transform: scale(1.1); }
+.feature-row .slide.tile:hover, .feature-row .slide.tile:has(:focus-visible) { transform: scale(1.1); }
 .feature-row .tile-title { font-size: 1.25rem; padding-top: 14px; }
 .feature-row .tile-desc { font-size: 1.02rem; padding: 66px 28px 22px; }
 @media (max-width: 860px) { .feature-row { grid-template-columns: 1fr; padding: 24px 12px 0; } }
 .slide.tile { padding: 8px; position: relative; z-index: 1; cursor: default;
   transition: transform .3s cubic-bezier(.2, .8, .2, 1), box-shadow .3s, border-color .3s; }
-.slide.tile:hover, .slide.tile:focus-within { transform: scale(1.18); z-index: 6; border-color: var(--accent); box-shadow: 0 28px 64px rgba(0, 0, 0, .55); }
+.slide.tile:hover, .slide.tile:has(:focus-visible) { transform: scale(1.18); z-index: 6; border-color: var(--accent); box-shadow: 0 28px 64px rgba(0, 0, 0, .55); }
 .tile-media { position: relative; border-radius: 14px; overflow: hidden; }
 .tile-media::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;   /* darkens the image behind the description */
   background: rgba(6, 10, 4, .74); opacity: 0; transition: opacity .3s; }
-.tile:hover .tile-media::after, .tile:focus-within .tile-media::after { opacity: 1; }
+.tile:hover .tile-media::after, .tile:has(:focus-visible) .tile-media::after { opacity: 1; }
 .tile-title { padding: 12px 6px 6px; font-size: 1.02rem; text-align: center; }
 .tile-desc { position: absolute; inset: 0; z-index: 3; display: flex; align-items: center; justify-content: center;
   padding: 50px 6% 14px; text-align: left; font-size: .94rem; line-height: 1.45; color: #f6f9f0; text-shadow: 0 1px 8px rgba(0, 0, 0, .6);
   opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .25s, transform .3s; }
 .tile-desc > span { display: block; max-width: 100%; }
 .tile-desc a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; pointer-events: auto; }
-.tile:hover .tile-desc, .tile:focus-within .tile-desc { opacity: 1; transform: none; }
+.tile:hover .tile-desc, .tile:has(:focus-visible) .tile-desc { opacity: 1; transform: none; }
 /* play button: centered at rest, shrinks and moves to the top edge while the description is showing */
 .tile .play { z-index: 2; inset: auto; top: 50%; left: 50%; margin: 0; transform: translate(-50%, -50%);
   transition: top .3s, transform .3s, background .2s; }
 .tile .ext { z-index: 2; }
-.tile:hover .play, .tile:focus-within .play { top: 12px; transform: translate(-50%, 0) scale(.6); transform-origin: 50% 0; }
+.tile:hover .play, .tile:has(:focus-visible) .play { top: 12px; transform: translate(-50%, 0) scale(.6); transform-origin: 50% 0; }
 .tile:hover .video:hover .play { transform: translate(-50%, 0) scale(.7); }
 @media (hover: none) {            /* touch screens can't hover: show the description under the thumbnail */
-  .slide.tile:hover, .slide.tile:focus-within { transform: none; box-shadow: none; border-color: var(--line); }
+  .slide.tile:hover, .slide.tile:has(:focus-visible) { transform: none; box-shadow: none; border-color: var(--line); }
   .tile-media::after { display: none; }
   .slide.tile { display: flex; flex-direction: column; }
   .tile-media { display: contents; }
   .tile-media > .media { order: 1; }
   .tile-title { order: 2; }
   .tile-desc { order: 3; position: static; display: block; opacity: 1; transform: none; padding: 2px 6px 10px; color: var(--muted); text-shadow: none; pointer-events: auto; }
-  .tile .play, .tile:hover .play, .tile:focus-within .play { top: 50%; transform: translate(-50%, -50%); }
+  .tile .play, .tile:hover .play, .tile:has(:focus-visible) .play { top: 50%; transform: translate(-50%, -50%); }
 }
 
+/* a playing video: no zoom and no text over the player, so every YouTube control (play, fullscreen, volume...) works */
+.slide.tile.is-playing, .slide.tile.is-playing:hover, .slide.tile.is-playing:has(:focus-visible),
+.feature-row .slide.tile.is-playing:hover { transform: none; box-shadow: none; border-color: var(--line); z-index: auto; }
+@media (hover: hover) {
+  .tile.is-playing .tile-desc, .tile.is-playing .tile-media::after { display: none; }
+}
 .carousel.wide .slide { flex: 0 1 520px; }
 .media.link { cursor: pointer; }
 .media.link img { transition: transform .4s; }

@@ -32,6 +32,8 @@
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-yt]");
     if (!btn) return;
+    const tile = btn.closest(".tile");           // hide the hover description while the video plays
+    if (tile) tile.classList.add("is-playing");
     btn.outerHTML = `<div class="media video"><iframe src="https://www.youtube-nocookie.com/embed/${btn.dataset.yt}?autoplay=1&rel=0" title="${esc(btn.getAttribute('aria-label').replace(/^Play /, ''))}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>`;
   });
 

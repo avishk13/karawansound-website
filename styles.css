@@ -254,7 +254,11 @@ main > section, #sections > section { position: relative; }
 @media (hover: none) {            /* touch screens can't hover: show the description under the thumbnail */
   .slide.tile:hover, .slide.tile:focus-within { transform: none; box-shadow: none; border-color: var(--line); }
   .tile-media::after { display: none; }
-  .tile-desc { position: static; display: block; opacity: 1; transform: none; padding: 12px 6px 0; color: var(--muted); text-shadow: none; pointer-events: auto; }
+  .slide.tile { display: flex; flex-direction: column; }
+  .tile-media { display: contents; }
+  .tile-media > .media { order: 1; }
+  .tile-title { order: 2; }
+  .tile-desc { order: 3; position: static; display: block; opacity: 1; transform: none; padding: 2px 6px 10px; color: var(--muted); text-shadow: none; pointer-events: auto; }
   .tile .play, .tile:hover .play, .tile:focus-within .play { top: 50%; transform: translate(-50%, -50%); }
 }
 
@@ -406,10 +410,10 @@ main > section > .wrap, #sections > section > .wrap { position: relative; z-inde
 .entry::after { content: ""; position: absolute; top: 48px; width: calc(var(--gap) - 14px); height: 2px; background: var(--line-hi); }
 .left::after { right: -1px; transform: translateX(100%); }
 .right::after { left: -1px; transform: translateX(-100%); }
-.year { position: absolute; top: 28px; z-index: 2; padding: 3px 14px; border-radius: 999px; background: var(--bg); border: 1px solid var(--accent-2); color: var(--accent-2);
-  font: 700 .95rem var(--font-head); letter-spacing: .04em; }
-.left .year { left: calc(100% + var(--gap) + 34px); }
-.right .year { right: calc(100% + var(--gap) + 34px); }
+.year { position: absolute; top: 0; z-index: 2; padding: 2px 12px; border-radius: 999px; background: var(--bg); border: 1px solid var(--accent-2); color: var(--accent-2);
+  font: 700 .85rem var(--font-head); letter-spacing: .04em; transform: translateX(-50%); }   /* sits on the center line, above the dot, inside the gap between the two columns */
+.left .year { left: calc(100% + var(--gap)); }
+.right .year { left: calc(-1 * var(--gap)); }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; transition: transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s, box-shadow .3s; }
 .card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 20px 50px rgba(0, 0, 0, .35); }
 .card-body { padding: 18px 10px 10px; }
@@ -459,6 +463,6 @@ main > section > .wrap, #sections > section > .wrap { position: relative; z-inde
   .entry, .entry.left, .entry.right, .entry + .entry, .entry.right + .entry.left { width: 100%; margin: 0 0 30px; padding-left: 44px; }
   .entry .node { top: 36px; left: 0 !important; right: auto !important; }
   .entry::after { display: none; }
-  .entry .year, .left .year, .right .year { position: static; display: inline-block; margin: 0 0 12px; }
+  .entry .year, .left .year, .right .year { position: static; display: inline-block; margin: 0 0 12px; transform: none; font-size: .95rem; padding: 3px 14px; }
   .entry.left.reveal, .entry.right.reveal { transform: translateY(20px); }
 }

@@ -14,7 +14,7 @@ Run `python serve.py` from the folder above this one (or `python -m http.server 
 ## Files
 - `404.html` - shown for unknown addresses (Cloudflare Pages uses it automatically).
 - `_headers` - security and caching headers (Cloudflare Pages / Netlify).
-- `robots.txt`, `sitemap.xml` - for search engines. They assume the address `https://www.karawansound.com`; change it if the live address differs (also the `og:url` / `og:image` tags in the `<head>` of each page).
+- `robots.txt`, `sitemap.xml` - for search engines (the projects page is listed as `/projects`, because Cloudflare Pages serves `projects.html` at that address). They assume the address `https://www.karawansound.com`; change it if the live address differs (also the `og:url` / `og:image` tags in the `<head>` of each page).
 - `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png` - browser and phone icons.
 - `images/og-image.png` - the picture shown when a link is shared (1200x630).
 
